@@ -1,44 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React w/ MobX using MVVM structure
 
-## Available Scripts
+This repo is a great example of implementing MVVM with ReactJS & MobX apps.
 
-In the project directory, you can run:
+## The App
 
-### `yarn start`
+This app is a todo-alike app but more of a randomly priced items app.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Structure
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The MVVM structure consists of 4 components:
 
-### `yarn test`
+- Model
+- View
+- ViewModel
+- ViewController (Binder)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Model
 
-### `yarn build`
+Model is the data source, which means it could the API.  
+If your model is the API, which is the case in this example, Model can be left behind. Instead, use ViewModel to supply data to view.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### View
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The view is always the UI. What the user sees.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ViewModel
 
-### `yarn eject`
+*ViewModel is a state of the data in the model.* Ever heard that before? Sound complicated! Doesn't it?  
+Well, lets break it down:  
+ViewModel contains properties and functions; View uses the functions and Binds to properties from ViewModel.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+All of that complexity is dealt with using MobX, so you don't have to worry about any of that process.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ViewController (Binder)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This piece of the MVVM structure is what makes it work all together.  
+Binder is used to bind functions' effects to the data source and refresh the view with the data that changed.  
+In short words: Binder waits for actions; actions change the data; functions create actions; binder creates functions; view calls function;
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Development
 
-## Learn More
+You can use this example for development. Just clone the repo change the name and version in `package.json` and you'll be ready to go.  
+There will be more examples in the future using this repo.  
+Also, improvements will be coming very often.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
